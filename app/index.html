@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Cover Maker — GTA-style cover art from your photos</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Vice City Cover Maker</h1>
+    <p class="tagline">Your photos, a sunset grade, one bold caption — a poster-style cover in three taps.</p>
+  </div>
+  <p class="badge">100% offline · your photos never leave this machine</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h2>1 · Photos</h2>
+    <p class="hint">Add up to three photos. Click a panel in the preview to pick which photo it shows.</p>
+    <div class="slots">
+      <div class="slot" data-slot="0">
+        <label>Photo 1 <input class="file" type="file" accept="image/*"></label>
+        <button type="button" class="sample" data-sample="pier">Use sample: Pier</button>
+        <span class="slot-state">empty</span>
+      </div>
+      <div class="slot" data-slot="1">
+        <label>Photo 2 <input class="file" type="file" accept="image/*"></label>
+        <button type="button" class="sample" data-sample="boulevard">Use sample: Boulevard</button>
+        <span class="slot-state">empty</span>
+      </div>
+      <div class="slot" data-slot="2">
+        <label>Photo 3 <input class="file" type="file" accept="image/*"></label>
+        <button type="button" class="sample" data-sample="pier">Use sample: Pier</button>
+        <span class="slot-state">empty</span>
+      </div>
+    </div>
+
+    <h2>2 · Layout &amp; size</h2>
+    <div class="row" id="layoutRow" role="group" aria-label="Layout">
+      <button type="button" data-layout="vice-grid" class="pick active">Vice Grid</button>
+      <button type="button" data-layout="sunset-strip" class="pick">Sunset Strip</button>
+      <button type="button" data-layout="neon-nights" class="pick">Neon Nights</button>
+    </div>
+    <div class="row" id="sizeRow" role="group" aria-label="Export size">
+      <button type="button" data-size="1080x1080" class="pick active">1080 × 1080</button>
+      <button type="button" data-size="1080x1350" class="pick">1080 × 1350</button>
+      <button type="button" data-size="1920x1080" class="pick">1920 × 1080</button>
+    </div>
+
+    <h2>3 · Grade &amp; words</h2>
+    <div class="row" id="gradeRow" role="group" aria-label="Colour grade">
+      <button type="button" data-grade="sunset" class="pick active">Sunset</button>
+      <button type="button" data-grade="neon" class="pick">Neon</button>
+      <button type="button" data-grade="teal" class="pick">Teal Noir</button>
+    </div>
+    <label class="field">Caption
+      <input id="caption" type="text" maxlength="28" value="Neon Nights">
+    </label>
+    <label class="field">Subtitle
+      <input id="subtitle" type="text" maxlength="40" value="Ocean Drive · After Dark">
+    </label>
+    <div class="row" id="colorRow" role="group" aria-label="Caption colour">
+      <button type="button" data-color="white" class="swatch white active" aria-label="White caption">Aa</button>
+      <button type="button" data-color="pink" class="swatch pink" aria-label="Pink caption">Aa</button>
+      <button type="button" data-color="yellow" class="swatch yellow" aria-label="Yellow caption">Aa</button>
+    </div>
+
+    <h2>4 · Selected panel</h2>
+    <p class="hint" id="panelHint">Click a panel in the preview, then drag it to move its photo.</p>
+    <label class="field">Panel photo
+      <select id="panelPhoto">
+        <option value="0">Photo 1</option>
+        <option value="1">Photo 2</option>
+        <option value="2">Photo 3</option>
+        <option value="">Empty panel</option>
+      </select>
+    </label>
+    <label class="field">Zoom
+      <input id="panelZoom" type="range" min="1" max="2.5" step="0.05" value="1">
+    </label>
+    <button type="button" id="panelCenter">Centre this photo</button>
+
+    <button type="button" id="export" class="export">Export PNG</button>
+    <p id="status" role="status"></p>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="stage-hint">Drag a panel to move its photo · scroll to zoom the selected panel</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
